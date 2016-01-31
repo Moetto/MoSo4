@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                 @Override
                 public void onSuccess(LoginResult loginResult) {
-                    Toast.makeText(MainActivity.this, "Loggen in facebook", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Logged in facebook", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
