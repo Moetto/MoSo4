@@ -8,6 +8,11 @@ import android.provider.ContactsContract;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+
 /**
  * Created by moetto on 1/29/16.
  */
@@ -31,14 +36,23 @@ public class CallMonitor extends BroadcastReceiver {
                 while (contacts.moveToNext()) {
                     Log.d(TAG, contacts.getString(0));
                 }
-            }
-            else {
+            } else {
                 Log.d(TAG, "Unknown number");
                 return;
             }
-            //TODO get name from facebook
 
-            //TODO post notification
+            //TODO get name from facebook
+            GraphRequest graphRequest = new GraphRequest(AccessToken.getCurrentAccessToken(),
+                    "/{id}",
+                    null,
+                    HttpMethod.GET,
+                    new GraphRequest.Callback() {
+
+                        @Override
+                        public void onCompleted(GraphResponse response) {
+                            //TODO post notification
+                        }
+                    });
         }
     }
 }
