@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
 
-            loginButton.setReadPermissions("user_posts");
+            loginButton.setReadPermissions("user_posts", "user_friends");
             loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                 @Override
                 public void onSuccess(LoginResult loginResult) {

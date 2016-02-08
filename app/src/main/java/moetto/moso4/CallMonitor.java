@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
+import com.facebook.GraphRequestAsyncTask;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 
@@ -42,17 +43,17 @@ public class CallMonitor extends BroadcastReceiver {
             }
 
             //TODO get name from facebook
-            GraphRequest graphRequest = new GraphRequest(AccessToken.getCurrentAccessToken(),
-                    "/{id}",
+            GraphRequestAsyncTask graphRequest = new GraphRequest(AccessToken.getCurrentAccessToken(),
+                    "/me/friends",
                     null,
                     HttpMethod.GET,
                     new GraphRequest.Callback() {
-
                         @Override
                         public void onCompleted(GraphResponse response) {
+                            Log.d(TAG, "" + response.getRawResponse());
                             //TODO post notification
                         }
-                    });
+                    }).executeAsync();
         }
     }
 }
