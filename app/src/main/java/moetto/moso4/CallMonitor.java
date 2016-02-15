@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
@@ -51,11 +52,11 @@ public class CallMonitor extends BroadcastReceiver {
                 Log.d(TAG, "Unknown number");
                 return;
             }
-
-            //TODO get name from facebook
+            Bundle parameters = new Bundle();
+            parameters.putInt("limit", 500);
             final GraphRequestAsyncTask friends = new GraphRequest(AccessToken.getCurrentAccessToken(),
                     "/me/friends",
-                    null,
+                    parameters,
                     HttpMethod.GET,
                     new GraphRequest.Callback() {
                         @Override
